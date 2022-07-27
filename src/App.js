@@ -16,8 +16,31 @@ class App extends React.Component {
   };
 
   onInputChange = (event) => {
-    this.setState({ [event.target.name]: event.target.value });
-  };
+    this.setState({ [event.target.name]: event.target.value }, () => {
+      this.enableButton();
+    });
+  }
+
+  enableButton = () => {
+    const maxValueSumAttr = 210;
+    const maxValueAttr = 90;
+    const { cardName, cardImage, cardDescription, cardAttr1,
+      cardAttr2, cardAttr3, cardRare } = this.state;
+    const buttonIsDisabled = cardName.length === 0
+    || cardDescription.length === 0
+    || cardImage.length === 0
+    || cardRare.length === 0
+    || Number(cardAttr1) > maxValueAttr
+    || Number(cardAttr1) < 0
+    || Number(cardAttr2) > maxValueAttr
+    || Number(cardAttr2) < 0
+    || Number(cardAttr3) > maxValueAttr
+    || Number(cardAttr3) < 0
+    || Number(cardAttr1) + Number(cardAttr2) + Number(cardAttr3) > maxValueSumAttr;
+    this.setState({
+      isSaveButtonDisabled: buttonIsDisabled,
+    });
+  }
 
   onSaveButtonClick = () => {};
 

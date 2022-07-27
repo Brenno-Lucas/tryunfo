@@ -6,13 +6,14 @@ class App extends React.Component {
   state = {
     cardName: '',
     cardDescription: '',
-    cardAttr1: '',
-    cardAttr2: '',
-    cardAttr3: '',
+    cardAttr1: '0',
+    cardAttr2: '0',
+    cardAttr3: '0',
     cardImage: '',
     cardRare: '',
     cardTrunfo: false,
     isSaveButtonDisabled: true,
+    cardItems: [],
   };
 
   onInputChange = (event) => {
@@ -42,7 +43,31 @@ class App extends React.Component {
     });
   }
 
-  onSaveButtonClick = () => {};
+  onSaveButtonClick = () => {
+    const { cardName, cardImage, cardDescription, cardAttr1,
+      cardAttr2, cardAttr3, cardRare, cardTrunfo } = this.state;
+    let { cardItems } = this.state;
+    cardItems = {
+      cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+      cardTrunfo };
+    this.setState({
+      cardName: '',
+      cardDescription: '',
+      cardAttr1: '0',
+      cardAttr2: '0',
+      cardAttr3: '0',
+      cardImage: '',
+      cardRare: '',
+      cardTrunfo: false,
+      isSaveButtonDisabled: true,
+    }); console.log(cardItems);
+  };
 
   render() {
     const { cardName, cardDescription, cardAttr1, cardAttr2, cardAttr3, cardImage,

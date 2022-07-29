@@ -77,7 +77,7 @@ class App extends React.Component {
 
   render() {
     const { cardName, cardDescription, cardAttr1, cardAttr2, cardAttr3, cardImage,
-      cardRare, cardTrunfo, isSaveButtonDisabled, hasTrunfo } = this.state;
+      cardRare, cardTrunfo, isSaveButtonDisabled, hasTrunfo, cardItems } = this.state;
 
     return (
       <div>
@@ -107,6 +107,23 @@ class App extends React.Component {
           cardTrunfo={ cardTrunfo }
           onInputChange={ this.onInputChange }
         />
+        <div>
+          <h1>Cartas</h1>
+          { cardItems[0] ? cardItems.map((param, i) => (
+            <Card
+              key={ i }
+              cardName={ param.cardName }
+              cardDescription={ param.cardDescription }
+              cardAttr1={ param.cardAttr1 }
+              cardAttr2={ param.cardAttr2 }
+              cardAttr3={ param.cardAttr3 }
+              cardImage={ param.cardImage }
+              cardRare={ param.cardRare }
+              cardTrunfo={ param.cardTrunfo }
+            />
+          ))
+            : cardItems }
+        </div>
       </div>
     );
   }
